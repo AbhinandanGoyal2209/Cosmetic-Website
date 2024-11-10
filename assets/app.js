@@ -48,13 +48,13 @@ const loadProducts = () => {
     productsContainer.innerHTML = `
         <div class="activity"></div>
         <div class="col-md-4 mb-4 placeholder">
-            <img class="img-fluid" src="assets/image/placeholder.jpg" alt="placeholder image">
+            <img class="img-fluid" src="1.png" alt="placeholder image">
         </div>
         <div class="col-md-4 mb-4 placeholder">
-            <img class="img-fluid" src="assets/image/placeholder.jpg" alt="placeholder image">
+            <img class="img-fluid" src="1.png" alt="placeholder image">
         </div>
         <div class="col-md-4 mb-4 placeholder">
-            <img class="img-fluid" src="assets/image/placeholder.jpg" alt="placeholder image">
+            <img class="img-fluid" src="arrival-1.jpg" alt="placeholder image">
         </div>
         <div class="col-md-4 mb-4 placeholder">
             <img class="img-fluid" src="assets/image/placeholder.jpg" alt="placeholder image">

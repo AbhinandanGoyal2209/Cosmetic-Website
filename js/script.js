@@ -1,24 +1,24 @@
-async function deals() {  
-  let deals = new Promise((resolve, reject) => {  
-    setTimeout(() => {  
-      resolve("hot deals soon live")
-    }, 3000) 
-  })
+// async function deals() {  
+//   let deals = new Promise((resolve, reject) => {  
+//     setTimeout(() => {  
+//       resolve("hot deals soon live")
+//     }, 3000) 
+//   })
 
-  let dealclose= new Promise((resolve, reject)=>{
-    setTimeout(()=>{
-      resolve("deals are closing")
-    },7000)
-  })
+//   let dealclose= new Promise((resolve, reject)=>{
+//     setTimeout(()=>{
+//       resolve("deals are closing")
+//     },7000)
+//   })
 
-  alert("fetching deals.......")
-  let x=await deals
-  alert(x)
-  alert("Fetching update.....")
-  let y=await dealclose
-  alert(y)
-  return[x,y]
-}
+//   alert("fetching deals.......")
+//   let x=await deals
+//   alert(x)
+//   alert("Fetching update.....")
+//   let y=await dealclose
+//   alert(y)
+//   return[x,y]
+// }
 
 window.onload = async () => {  
   try {  
