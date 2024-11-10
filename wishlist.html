@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <style>
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .product-list {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .product {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #2980b9;
+        }
+
+        #wishlist-items {
+            margin-top: 40px;
+        }
+
+        #wishlist-status {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffcccc;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        #wishlist {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #wishlist li {
+            background-color: #f0f0f5;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #wishlist li button {
+            background-color: #2ecc71;
+            margin-left: 10px;
+        }
+
+        #wishlist li button:hover {
+            background-color: #27ae60;
+        }
+
+        .show-more {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .show-more:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Wishlist</h1>
+        <div id="wishlist-status" class="empty-message">
+            <p>Your wishlist is empty. Please add items to it.</p>
+        </div>
+
+        <div class="product-list">
+            <div class="product">
+                <img src="arrival-1.jpg" alt="Product 1">
+                <p>Lipstick</p>
+                <button onclick="addToWishlist('product-1')">Add to Wishlist</button>
+            </div>
+            <div class="product">
+                <img src="arrival-2.jpg" alt="Product 2">
+                <p>Eyr Liner</p>
+                <button onclick="addToWishlist('product-2')">Add to Wishlist</button>
+            </div>
+            <div class="product">
+                <img src="arrival-3.jpg" alt="Product 3">
+                <p>Foundation</p>
+                <button onclick="addToWishlist('product-3')">Add to Wishlist</button>
+            </div>
+        </div>
+
+        <div id="wishlist-items">
+            <h2>Your Wishlist:</h2>
+            <ul id="wishlist"></ul>
+        </div>
+
+        <!-- Show More Button -->
+        <button class="show-more" onclick="window.location.href='index.html'">Show More</button>
+    </div>
+
+    <script>
+        // scripts.js
+
+        // Function to add items to the wishlist
+        function addToWishlist(productId) {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+            // Prevent adding the same product multiple times
+            if (!wishlist.includes(productId)) {
+                wishlist.push(productId);
+            }
+
+            // Update localStorage with the new wishlist
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+            // Update the wishlist display
+            updateWishlist();
+        }
+
+        // Function to remove items from the wishlist
+        function removeFromWishlist(productId) {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            wishlist = wishlist.filter(item => item !== productId);
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+            updateWishlist();
+        }
+
+        // Function to add items to the cart
+        function addToCart(productId) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Prevent adding the same product multiple times
+            if (!cart.includes(productId)) {
+                cart.push(productId);
+            }
+
+            // Update localStorage with the new cart
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Optional: You can alert the user or show a message here
+            alert(productId + " has been added to your cart!");
+        }
+
+        // Function to update the wishlist status and display
+        function updateWishlist() {
+            const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            const wishlistItems = document.getElementById("wishlist");
+            const wishlistStatus = document.getElementById("wishlist-status");
+
+            // Clear current wishlist items
+            wishlistItems.innerHTML = "";
+
+            if (wishlist.length === 0) {
+                // If the wishlist is empty, show the empty message
+                wishlistStatus.innerHTML = "<p>Your wishlist is empty. Please add items to it.</p>";
+            } else {
+                // Otherwise, list all the items in the wishlist
+                wishlistStatus.innerHTML = "<p>Your wishlist has " + wishlist.length + " item(s).</p>";
+
+                // Add each item to the list
+                wishlist.forEach(item => {
+                    const li = document.createElement("li");
+                    li.innerHTML = "Product " + item.split("-")[1] +
+                        " <button onclick='removeFromWishlist(\"" + item + "\")'>Remove</button>" +
+                        " <button onclick='addToCart(\"" + item + "\")'>Add to Cart</button>";
+                    wishlistItems.appendChild(li);
+                });
+            }
+        }
+
+        // Run updateWishlist when the page loads
+        window.onload = updateWishlist;
+    </script>
+</body>
+
+</html>

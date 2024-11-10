@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .heading h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .order-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .item-price {
+            color: #888;
+            font-size: 1rem;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .empty-message {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="heading">
+        <h1>My Orders</h1>
+    </div>
+
+    <div class="order-container" id="orderContainer">
+        <!-- Orders will be dynamically inserted here -->
+    </div>
+
+    <script>
+        // Function to load orders from localStorage
+        function loadOrders() {
+            const orderContainer = document.getElementById('orderContainer');
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            if (cart.length === 0) {
+                orderContainer.innerHTML = `<p class="empty-message">Your order is empty. Add items to your cart.</p>`;
+                return;
+            }
+
+            let totalCost = 0;
+            cart.forEach(item => {
+                totalCost += item.price;
+
+                const orderItem = document.createElement('div');
+                orderItem.classList.add('order-item');
+
+                orderItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <p class="item-name">${item.name}</p>
+                        <p class="item-price">$${item.price.toFixed(2)}</p>
+                    </div>
+                `;
+
+                orderContainer.appendChild(orderItem);
+            });
+
+            // Display total cost
+            const totalDisplay = document.createElement('div');
+            totalDisplay.classList.add('total');
+            totalDisplay.textContent = `Total: ${totalCost.toFixed(2)}`;
+            orderContainer.appendChild(totalDisplay);
+        }
+
+        // Load orders when the page loads
+        window.onload = loadOrders;
+    </script>
+
+</body>
+
+</html>

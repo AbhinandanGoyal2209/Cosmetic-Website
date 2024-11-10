@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favourite</title>
+    <style>
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .product-list {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .product {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #2980b9;
+        }
+
+        #favourites-items {
+            margin-top: 40px;
+        }
+
+        #favourites-status {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffcccc;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        #favourites {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #favourites li {
+            background-color: #f0f0f5;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #favourites li button {
+            background-color: #e74c3c;
+            margin-left: 10px;
+        }
+
+        #favourites li button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Favourites</h1>
+        <div id="favourites-status" class="empty-message">
+            <p>Your favourites list is empty. Please add items to it.</p>
+        </div>
+
+        <div class="product-list">
+            <div class="product">
+                <img src="arrival-4.jpg" alt="Product 1">
+                <p>Product 1</p>
+                <button onclick="addToFavourites('product-1')">Add to Favourites</button>
+            </div>
+            <div class="product">
+                <img src="arrival-5.jpg" alt="Product 2">
+                <p>Product 2</p>
+                <button onclick="addToFavourites('product-2')">Add to Favourites</button>
+            </div>
+            <div class="product">
+                <img src="arrival-6.jpg" alt="Product 3">
+                <p>Product 3</p>
+                <button onclick="addToFavourites('product-3')">Add to Favourites</button>
+            </div>
+        </div>
+
+        <div id="favourites-items">
+            <h2>Your Favourites:</h2>
+            <ul id="favourites"></ul>
+        </div>
+    </div>
+
+    <script>
+        // scripts.js
+
+        // Function to add items to the favourites list
+        function addToFavourites(productId) {
+            let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+
+            // Prevent adding the same product multiple times
+            if (!favourites.includes(productId)) {
+                favourites.push(productId);
+            }
+
+            // Update localStorage with the new favourites list
+            localStorage.setItem("favourites", JSON.stringify(favourites));
+
+            // Update the favourites display
+            updateFavourites();
+        }
+
+        // Function to remove items from the favourites list
+        function removeFromFavourites(productId) {
+            let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+            favourites = favourites.filter(item => item !== productId);
+            localStorage.setItem("favourites", JSON.stringify(favourites));
+
+            updateFavourites();
+        }
+
+        // Function to update the favourites status and display
+        function updateFavourites() {
+            const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+            const favouritesItems = document.getElementById("favourites");
+            const favouritesStatus = document.getElementById("favourites-status");
+
+            // Clear current favourites items
+            favouritesItems.innerHTML = "";
+
+            if (favourites.length === 0) {
+                // If the favourites list is empty, show the empty message
+                favouritesStatus.innerHTML = "<p>Your favourites list is empty. Please add items to it.</p>";
+            } else {
+                // Otherwise, list all the items in the favourites
+                favouritesStatus.innerHTML = "<p>Your favourites list has " + favourites.length + " item(s).</p>";
+
+                // Add each item to the list
+                favourites.forEach(item => {
+                    const li = document.createElement("li");
+                    li.innerHTML = "Product " + item.split("-")[1] +
+                        " <button onclick='removeFromFavourites(\"" + item + "\")'>Remove</button>";
+                    favouritesItems.appendChild(li);
+                });
+            }
+        }
+
+        // Run updateFavourites when the page loads
+        window.onload = updateFavourites;
+    </script>
+</body>
+
+</html>
