@@ -57,9 +57,12 @@
         let user_records= new Array();
         user_records= JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
         if(user_records.some((v)=>{
-            return v.email==email
+             v.email==email
+            alert("You are already registered! Please login.");
+            navigate('/login');
         })){
-            alert("You are already a customer! Please Login");
+            alert("Registration successful!");
+            navigate('/login');
         }
         else{
             user_records.push({
