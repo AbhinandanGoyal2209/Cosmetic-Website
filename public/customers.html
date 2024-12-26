@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registered Customers</title>
+  <style>
+    /* General body styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f1f1f1;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    /* Container to center content */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      margin-bottom: 20px;
+    }
+
+    /* Title styling */
+    .title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    /* Table container */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    /* Styling for the table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 15px;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    th {
+      background-color: #007BFF;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+
+    /* Hover effect on rows */
+    tbody tr:hover {
+      background-color: #f1f1f1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    /* Button Styling */
+    .back-button {
+      background-color: #007BFF;
+      color: white;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      display: block;
+      width: max-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .back-button:hover {
+      background-color: #0056b3;
+      cursor: pointer;
+    }
+
+    /* Responsive Design for small screens */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      .title {
+        font-size: 2rem;
+      }
+
+      th, td {
+        padding: 12px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Registered Customers</h1>
+    <div class="table-container">
+      <table id="customers-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic data goes here -->
+        </tbody>
+      </table>
+    </div>
+    <!-- Back to Registration Button -->
+    <a href="index.html" class="back-button">Back to Registration</a>
+  </div>
+
+  <script>
+    async function loadCustomers() {
+      try {
+        const response = await fetch('/get_customers');
+        const customers = await response.json();
+
+        const tableBody = document.getElementById('customers-table').querySelector('tbody');
+        tableBody.innerHTML = '';
+
+        customers.forEach(customer => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${customer.id}</td>
+            <td>${customer.name}</td>
+            <td>${customer.age}</td>
+            <td>${customer.email}</td>
+            <td>${customer.phone}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error loading customers:', error);
+      }
+    }
+
+    // Load customers when the page loads
+    window.onload = loadCustomers;
+  </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful</title>
+    <style>
+        /* General styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Deep blue gradient */
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        /* Floating animated gradient background */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2;
+        }
+
+        .background-animation::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+            animation: move 10s infinite linear;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* Glassmorphic container */
+        .message-container {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            max-width: 450px;
+            width: 90%;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Heading styles */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffe066;
+            letter-spacing: 2px;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Paragraph styles */
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #e0f7fa;
+            animation: fadeInText 2s ease;
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Button styles */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1e3c72;
+            background: #ffe066;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(255, 224, 102, 0.4);
+            animation: buttonGlow 2s infinite alternate;
+        }
+
+        @keyframes buttonGlow {
+            0% {
+                box-shadow: 0 4px 15px rgba(255, 224, 102, 0.4);
+            }
+            100% {
+                box-shadow: 0 8px 25px rgba(255, 224, 102, 0.6);
+            }
+        }
+
+        a:hover {
+            background: #fff176;
+            box-shadow: 0 8px 25px rgba(255, 241, 118, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* Floating shapes */
+        .floating-shape {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            filter: blur(8px);
+            animation: floatShapes 8s infinite ease-in-out;
+        }
+
+        .floating-shape:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-shape:nth-child(2) {
+            top: 70%;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        .floating-shape:nth-child(3) {
+            top: 50%;
+            left: 75%;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatShapes {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="message-container">
+        <h1>🎉 Success!</h1>
+        <p>Your registration was completed successfully. Welcome to our community!</p>
+        <a href="/">Return to Homepage</a>
+    </div>
+</body>
+</html>

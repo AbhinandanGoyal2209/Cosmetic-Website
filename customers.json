@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Abhinandan Goyal",
+    "age": "19",
+    "email": "abhinandan0177.be23@chitkara.edu.in",
+    "password": "$2b$10$jO6nsiv6ILgAc4CiGqus...yccZGZ35rcwwz6klY0loSqlay4m2aC",
+    "phone": "7009428804"
+  },
+  {
+    "id": 2,
+    "name": "Arshdeep",
+    "age": "20",
+    "email": "arshdeep@gmail.com",
+    "password": "$2b$10$CgpkLM2CU763qvSjla7lMeFnHBqHv0Wk2MFzPRpAvvtj.0phjcPZS",
+    "phone": "9513843999"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "nmvhjjhfjhfj",
+    "age": "25",
+    "email": "anshuman123@gmail.com",
+    "password": "$2b$10$0WECoEssRNTypNCGuyucTuvJTh3YhFqRJx.ghRGYhUBWaeVoFAq3a",
+    "phone": "7009428804"
+  },
+  {
+    "id": 2,
+    "name": "Abhinandan Goyal",
+    "age": "25",
+    "email": "abhinandangoyal1223@gmail.com",
+    "password": "$2b$10$RjTgEOX2KufS4wYfOuIZt.X2eAZJ3uLFT/bNqnYU5pdVnP92DTWLm",
+    "phone": "7009428804"
+  },
+  {
+    "id": 3,
+    "name": "Abhinandan Goyal",
+    "age": "28",
+    "email": "abhinav0008.be23@chitkara.edu.in",
+    "password": "$2b$10$xMOIRinCuuoJD4mFIw6CT.G1JYXRUaheoI8/GhRJX.2HLqKIpZ..y",
+    "phone": "7009428804"
+  },
+  {
+    "id": 4,
+    "name": "Abhinandan Goyal",
+    "age": "25",
+    "email": "abhinandan0177.be23@chitkara.edu.in",
+    "password": "$2b$10$4A1ZWxFbcBVgNijO92vMRulocX.lokBXLelTIB1WPD832rOPkaqw2",
+    "phone": "7009428804"
+  },
+  {
+    "id": 5,
+    "name": "Abhinandan Goyal",
+    "age": "25",
+    "email": "A@gmail.com",
+    "password": "$2b$10$Tf9B1.SOLvFrdPt11ndW8eDS3EjH5Z.TK3nrnQkOefTCU/60Ae2Xa",
+    "phone": "1236547890"
+  }
+]
